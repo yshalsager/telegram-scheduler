@@ -5,6 +5,8 @@
 		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
 		<meta name="viewport" content="width=device-width" />
 		%sveltekit.head%
+		<!-- Blob polyfill -->
+		<script src="https://polyfill.io/v3/polyfill.min.js?features=Blob" async></script>
 	</head>
 	<body data-sveltekit-preload-data="hover">
 		<div style="display: contents">%sveltekit.body%</div>
