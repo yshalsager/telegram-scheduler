@@ -1,0 +1,14 @@
+<div class="hero min-h-screen bg-base">
+	<div class="hero-content text-center">
+		<div class="max-w-3xl">
+			<h1 class="text-5xl font-bold text-primary">مجدول رسائل تيليجرام</h1>
+			<p class="py-6 text-lg">
+				طريقة سهلة لجدولة رسائل تيليجرام المخزنة في ملف نصي. كل ما عليك هو تسجيل الدخول، ثم اختيار
+				الملف، واختيار المحادثة التي تود إرسال الرسائل إليها، وإعداد كيفية الجدولة ثم اﻹرسال!
+			</p>
+			<button class="btn btn-lg btn-primary text-white text-xl" on:click={() => console.log('!')}
+				>البدء الآن!</button
+			>
+		</div>
+	</div>
+</div>

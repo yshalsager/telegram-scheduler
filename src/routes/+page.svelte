@@ -1,4 +1,5 @@
 <script>
+	import Home from '../components/Home.svelte';
 	import { splitLines } from '../lib/files.js';
 
 	let file;
@@ -19,6 +20,8 @@
 	}
 </script>
 
-<input type="file" on:change={readText} />
+<Home />
+
+<!-- <input type="file" on:change={readText} />
 <p>file: {file ? file.name : ''}</p>
-<pre id="output">{text ? text : ''}</pre>
+<pre id="output">{text ? text : ''}</pre> -->

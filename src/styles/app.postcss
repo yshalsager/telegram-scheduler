@@ -5,30 +5,6 @@
 @layer base {
 	@font-face {
 		font-family: 'Noto Sans Arabic', serif;
-		src: url('/fonts/NotoSansArabic-VariableFont_wdth,wght') format('truetype');
+		src: url('%sveltekit.assets%/fonts/NotoSansArabic-VariableFont_wdth,wght') format('truetype');
 	}
-}
-
-.navbar-tg .nav > li > a:after {
-	/* display: block; */
-	height: 0.25rem; /* 4px */
-	background: hsl(var(--in));
-	position: absolute;
-	border-radius: 2px 2px 0 0;
-	content: '';
-	left: 0.25rem; /* 4px */
-	right: 0.25rem; /* 4px */
-	opacity: 0;
-	bottom: -0.625rem; /* 10px */
-	transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
-	-webkit-transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
-	-moz-transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
-	-ms-transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
-	transform-origin: bottom;
-	transform: scaleX(0.3) scaleY(0);
-}
-.navbar-tg .nav > .active > a:after,
-.navbar-tg .nav > li > a:hover:after {
-	opacity: 1;
-	transform: scaleX(1) scaleY(1);
 }
