@@ -1,5 +1,5 @@
 <script>
-	import { splitLines } from '../utils/files.js';
+	import { splitLines } from '../lib/files.js';
 
 	let file;
 	let text;
@@ -18,8 +18,6 @@
 		text = splittedText.join('\n\n\n');
 	}
 </script>
-
-<h1>Telegram Scheduler</h1>
 
 <input type="file" on:change={readText} />
 <p>file: {file ? file.name : ''}</p>
