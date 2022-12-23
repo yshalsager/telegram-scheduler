@@ -6,7 +6,7 @@
 	// https://github.com/CaptainCodeman/svelte-theme-select/blob/948df6a0020eb452ea04f5df2dac6fe991534dae/src/lib/Theme.svelte
 	const setTheme = () =>
 		(document.documentElement.dataset.theme =
-			localStorage.theme === 'telegramDark' ? 'telegramDark' : 'telegram');
+			localStorage.theme === 'telegram' ? 'telegram' : 'telegramDark');
 	// .substring(6) to remove '() => ' part
 	const setThemeScript = `<script>${setTheme.toString().substring(6)}</scrip` + 't>';
 </script>
