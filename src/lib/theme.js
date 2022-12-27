@@ -4,5 +4,5 @@ export const toggleTheme = () => {
 	const newTheme = currentTheme === 'telegram' ? 'telegramDark' : 'telegram';
 	theme.set(newTheme);
 	document.documentElement.dataset.theme = newTheme;
-	console.log(`Theme changed to ${newTheme}`);
+	// console.log(`Theme changed to ${newTheme}`);
 };

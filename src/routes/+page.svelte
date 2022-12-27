@@ -23,6 +23,11 @@
 
 <Home />
 
-<input bind:files type="file" on:change={readText} />
+<input
+	bind:files
+	on:change={readText}
+	type="file"
+	class="file-input file-input-bordered file-input-sm file-input-primary w-full max-w-xs"
+/>
 <p>file: {selectedFile ? selectedFile.name : ''}</p>
-<textarea cols="50" rows="5" bind:value={textContent} />
+<textarea class="textarea textarea-primary" cols="50" rows="5" bind:value={textContent} />
