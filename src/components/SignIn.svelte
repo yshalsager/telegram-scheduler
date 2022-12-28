@@ -1,7 +1,7 @@
 <script>
 	import { telegram } from '../lib/telegram.js';
 	import { logOutCompletely } from '../lib/logout.js';
-	import Toast from './Toast.svelte';
+	import { showToast } from '../lib/toast.js';
 	import {
 		isAuthenticated,
 		telegramApiID,
@@ -16,7 +16,6 @@
 	let apiID = '';
 	let apiHash = '';
 	let phoneNumber = '';
-	let toastMessage = '';
 
 	const logIn = async () => {
 		// Use login data from local storage if it exists
@@ -32,7 +31,7 @@
 			signedIn = await telegram.newSignIn(phoneNumber);
 		}
 		if (signedIn) {
-			toastMessage = 'سجل الدخول بنجاح!';
+			showToast('سجل الدخول بنجاح!');
 			if (!$telegramStringSession) {
 				// Save to store
 				telegramApiID.set(apiID);
@@ -42,18 +41,13 @@
 			telegramUser.set(await telegram.getMe());
 			isAuthenticated.set(true);
 		} else {
-			toastMessage = 'فشل تسجيل الدخول!';
+			showToast('فشل تسجيل الدخول!');
 		}
 		return signedIn;
 	};
 
 	const logOutAndShowToast = () => {
-		// document.getElementById('signOutBtn').click();
-		logOutCompletely();
-		toastMessage = 'سجل الخروج بنجاح!';
-		setTimeout(() => {
-			toastMessage = '';
-		}, 3000);
+		showToast('سجل الخروج بنجاح!', logOutCompletely);
 	};
 </script>
 
@@ -125,8 +119,3 @@
 	</aside>
 {/if}
 <Redirect url="/app/" condition={isLoggedIn} timeout="2100" />
-
-<!-- TODO: refactor toastMessage logic to one common place. -->
-{#if toastMessage}
-	<svelte:component this={Toast}>{toastMessage}</svelte:component>
-{/if}

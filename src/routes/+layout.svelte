@@ -1,7 +1,9 @@
 <script>
 	import '../styles/app.postcss';
-	import Navbar from '../components/Navbar.svelte';
 	import Footer from '../components/Footer.svelte';
+	import Navbar from '../components/Navbar.svelte';
+	import Toast from '../components/Toast.svelte';
+	import { toastMessage } from '../store.js';
 
 	// Set theme on page load, based on
 	// https://github.com/CaptainCodeman/svelte-theme-select/blob/948df6a0020eb452ea04f5df2dac6fe991534dae/src/lib/Theme.svelte
@@ -20,3 +22,7 @@
 </main>
 
 <Footer />
+
+{#if $toastMessage}
+	<svelte:component this={Toast}>{$toastMessage}</svelte:component>
+{/if}

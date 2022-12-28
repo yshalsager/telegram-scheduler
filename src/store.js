@@ -1,6 +1,9 @@
 import { writable, derived } from 'svelte/store';
 import { browser } from '$app/environment';
 
+// Toast
+export const toastMessage = writable('');
+
 // Theme
 const storedTheme = browser && localStorage.getItem('theme');
 export const theme = writable(storedTheme ?? 'telegram');

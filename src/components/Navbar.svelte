@@ -1,10 +1,9 @@
 <script>
-	import Toast from './Toast.svelte';
 	import { navigateAndReplaceState } from '../lib/navigation.js';
 	import { logOut } from '../lib/logout.js';
+	import { showToast } from '../lib/toast.js';
 	import { toggleTheme } from '../lib/theme.js';
 	import { theme, isAuthenticated, telegramUser } from '../store.js';
-
 	import { page } from '$app/stores';
 
 	import Gear from 'phosphor-svelte/lib/Gear';
@@ -13,13 +12,8 @@
 	import SignOut from 'phosphor-svelte/lib/SignOut';
 	import Sun from 'phosphor-svelte/lib/Sun';
 
-	let toastMessage = '';
 	const logOutAndShowToast = () => {
-		logOut();
-		toastMessage = 'سجل الخروج بنجاح!';
-		setTimeout(() => {
-			toastMessage = '';
-		}, 3000);
+		showToast('سجل الخروج بنجاح!', logOut);
 	};
 
 	// TODO: Add settings page and clear data button
@@ -66,7 +60,3 @@
 		</li>
 	</ul>
 </div>
-
-{#if toastMessage}
-	<svelte:component this={Toast}>{toastMessage}</svelte:component>
-{/if}
