@@ -20,7 +20,6 @@
 <main class="container mx-auto min-h-screen">
 	<slot />
 </main>
-
 <Footer />
 
 {#if $toastMessage}

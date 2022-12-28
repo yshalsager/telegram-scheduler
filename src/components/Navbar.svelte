@@ -44,7 +44,11 @@
 			{/if}
 		</li>
 		<li>
-			<a title="اﻹعدادات" href="#/">
+			<a
+				title="اﻹعدادات"
+				href="/settings"
+				on:click={() => $page.url.pathname !== '/settings' && navigateAndReplaceState('/settings')}
+			>
 				<Gear size={24} weight="bold" />
 			</a>
 		</li>
