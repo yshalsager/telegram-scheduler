@@ -2,6 +2,8 @@
 	import { telegram } from '../lib/telegram.js';
 	import { logOutCompletely } from '../lib/logout.js';
 	import { showToast } from '../lib/toast.js';
+	import isEmpty from 'lodash-es/isEmpty';
+
 	import {
 		isAuthenticated,
 		telegramApiID,
@@ -32,7 +34,7 @@
 		}
 		if (signedIn) {
 			showToast('سجل الدخول بنجاح!');
-			if (!$telegramStringSession) {
+			if (isEmpty($telegramStringSession)) {
 				// Save to store
 				telegramApiID.set(apiID);
 				telegramApiHash.set(apiHash);
@@ -53,7 +55,7 @@
 
 {#if !$isLoggedIn}
 	<div class="mt-10 flex flex-col justify-center items-center">
-		{#if !$telegramStringSession}
+		{#if isEmpty($telegramStringSession)}
 			<div class="form-control">
 				<label class="label" for="apiID">
 					<span class="label-text">API ID</span>

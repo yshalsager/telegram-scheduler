@@ -1,5 +1,6 @@
 import { writable, derived } from 'svelte/store';
 import { browser } from '$app/environment';
+import isEmpty from 'lodash-es/isEmpty';
 
 // Toast
 export const toastMessage = writable('');
@@ -28,9 +29,9 @@ browser && telegramApiHash.subscribe((value) => localStorage.setItem('tah', valu
 
 // Login state
 export const isAuthenticated = writable(
-	(browser && localStorage.getItem('tia') === 'true') || false
+	(browser && sessionStorage.getItem('tia') === 'true') || false
 );
-browser && isAuthenticated.subscribe((value) => localStorage.setItem('tia', value));
+browser && isAuthenticated.subscribe((value) => sessionStorage.setItem('tia', value));
 
 // LoggedIn User
 export const telegramUser = writable((browser && JSON.parse(localStorage.getItem('tlu'))) || {});
@@ -41,23 +42,26 @@ export const isLoggedIn = derived(
 	[isAuthenticated, telegramStringSession, telegramApiID, telegramApiHash, telegramUser],
 	([$isAuthenticated, $telegramStringSession, $telegramApiID, $telegramApiHash, $telegramUser]) =>
 		$isAuthenticated &&
-		$telegramStringSession &&
-		$telegramApiID &&
-		$telegramApiHash &&
-		$telegramUser
+		!isEmpty($telegramStringSession) &&
+		!isEmpty($telegramApiID) &&
+		!isEmpty($telegramApiHash) &&
+		!isEmpty($telegramUser)
 );
 
 export const isLoggedOut = derived(
-	[isAuthenticated, telegramStringSession, telegramApiID, telegramApiHash, telegramUser],
-	([$isAuthenticated, $telegramStringSession, $telegramApiID, $telegramApiHash, $telegramUser]) =>
-		(!$isAuthenticated || !$telegramUser) &&
-		$telegramApiID &&
-		$telegramApiHash &&
-		$telegramStringSession
+	[isAuthenticated, telegramStringSession, telegramApiID, telegramApiHash],
+	([$isAuthenticated, $telegramStringSession, $telegramApiID, $telegramApiHash]) =>
+		!$isAuthenticated &&
+		!isEmpty($telegramApiID) &&
+		!isEmpty($telegramApiHash) &&
+		!isEmpty($telegramStringSession)
 );
 
 export const isLoggedOutCompletely = derived(
 	[isAuthenticated, telegramStringSession, telegramApiID, telegramApiHash],
 	([$isAuthenticated, $telegramStringSession, $telegramApiID, $telegramApiHash]) =>
-		!$isAuthenticated && !$telegramStringSession && !$telegramApiID && !$telegramApiHash
+		!$isAuthenticated &&
+		isEmpty($telegramStringSession) &&
+		isEmpty($telegramApiID) &&
+		isEmpty($telegramApiHash)
 );

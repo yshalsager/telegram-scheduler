@@ -1,9 +1,12 @@
 <script>
+	import { browser } from '$app/environment';
+
 	import '../styles/app.postcss';
 	import Footer from '../components/Footer.svelte';
 	import Navbar from '../components/Navbar.svelte';
 	import Toast from '../components/Toast.svelte';
 	import { toastMessage } from '../store.js';
+	import { logOut } from '../lib/logout';
 
 	// Set theme on page load, based on
 	// https://github.com/CaptainCodeman/svelte-theme-select/blob/948df6a0020eb452ea04f5df2dac6fe991534dae/src/lib/Theme.svelte
@@ -11,10 +14,21 @@
 		(document.documentElement.dataset.theme = localStorage.theme ?? 'telegram');
 	// .substring(6) to remove '() => ' part
 	const setThemeScript = `<script>${setTheme.toString().substring(6)}</scrip` + 't>';
+
+	function beforeUnload(event) {
+		event.preventDefault();
+		// Logout if browser window is closed but not refreshed
+		browser && sessionStorage.getItem('tia') !== 'true' && logOut();
+		// Chrome requires returnValue to be set.
+		return (event.returnValue = '');
+	}
 </script>
 
 <!-- this sets theme class based on localstorage settings (in head to avoid FOUC) -->
 <svelte:head>{@html setThemeScript}</svelte:head>
+
+<!-- sets custom window close event handler -->
+<svelte:window on:beforeunload={beforeUnload} />
 
 <Navbar />
 <main class="container mx-auto min-h-screen">
