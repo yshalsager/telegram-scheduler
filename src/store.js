@@ -6,7 +6,13 @@ export const toastMessage = writable('');
 
 // Theme
 const storedTheme = browser && localStorage.getItem('theme');
-export const theme = writable(storedTheme ?? 'telegram');
+export const theme = writable(
+	storedTheme ??
+		((browser && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+			? 'telegramDark'
+			: 'telegram') ||
+			'telegram')
+);
 browser && theme.subscribe((value) => localStorage.setItem('theme', value));
 
 // Telegram String Session
