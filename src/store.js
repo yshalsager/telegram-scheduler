@@ -5,9 +5,8 @@ import { browser } from '$app/environment';
 export const toastMessage = writable('');
 
 // Theme
-const storedTheme = browser && localStorage.getItem('theme');
 export const theme = writable(
-	storedTheme ??
+	(browser && localStorage.getItem('theme')) ??
 		((browser && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
 			? 'telegramDark'
 			: 'telegram') ||
@@ -16,18 +15,15 @@ export const theme = writable(
 browser && theme.subscribe((value) => localStorage.setItem('theme', value));
 
 // Telegram String Session
-const storedTelegramStringSession = (browser && localStorage.getItem('tss')) || '';
-export const telegramStringSession = writable(storedTelegramStringSession);
+export const telegramStringSession = writable((browser && localStorage.getItem('tss')) || '');
 browser && telegramStringSession.subscribe((value) => localStorage.setItem('tss', value));
 
 // Telegram API ID
-const storedTelegramApiID = (browser && localStorage.getItem('tai')) || '';
-export const telegramApiID = writable(storedTelegramApiID);
+export const telegramApiID = writable((browser && localStorage.getItem('tai')) || '');
 browser && telegramApiID.subscribe((value) => localStorage.setItem('tai', value));
 
 // Telegram API Hash
-const storedTelegramApiHash = (browser && localStorage.getItem('tah')) || '';
-export const telegramApiHash = writable(storedTelegramApiHash);
+export const telegramApiHash = writable((browser && localStorage.getItem('tah')) || '');
 browser && telegramApiHash.subscribe((value) => localStorage.setItem('tah', value));
 
 // Login state
