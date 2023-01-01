@@ -2,7 +2,7 @@
 	import Redirect from './Redirect.svelte';
 	import Message from './Message.svelte';
 
-	import { isLoggedOut, isAuthenticated } from '../store.js';
+	import { isLoggedOut, isLoggedOutCompletely, isAuthenticated } from '../store.js';
 	import { telegram } from '../lib/telegram.js';
 	import { readAndSplitText } from '../lib/files.js';
 	import { getScheduleTimeStamps } from '../lib/datetime.js';
@@ -45,14 +45,19 @@
 		);
 
 	$: if ($textMessages && scheduleStartDate && scheduleStartTime && scheduleInterval)
-		scheduleTimestamps = getScheduleTimeStamps(
-			$textMessages.length,
-			scheduleStartDate,
-			scheduleStartTime,
-			scheduleInterval,
-			scheduleStopTime,
-			scheduleNewDayStartTime
-		);
+		try {
+			scheduleTimestamps = getScheduleTimeStamps(
+				$textMessages.length,
+				scheduleStartDate,
+				scheduleStartTime,
+				scheduleInterval,
+				scheduleStopTime,
+				scheduleNewDayStartTime
+			);
+		} catch (error) {
+			console.error(error);
+		}
+
 	$: scheduleTimestamps &&
 		textMessages.set(
 			$textMessages.map((message, index) => {
@@ -81,6 +86,7 @@
 </script>
 
 <Redirect url="/login/" condition={isLoggedOut} />
+<Redirect url="/login/" condition={isLoggedOutCompletely} />
 {#if isAuthenticated}
 	<div id="filePreview" class="w-full min-h-[75vh] bg-base-100">
 		<div class="flex sm:flex-nowrap flex-wrap min-w-full py-6">

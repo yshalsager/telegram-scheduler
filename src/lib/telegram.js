@@ -81,15 +81,19 @@ class Telegram {
 	}
 
 	async batchSendMessage(messages, chatID) {
-		return await Promise.allSettled(
-			messages.forEach((message) => {
-				this.sendscheduledMessage(
-					message.prefix + message.text + message.suffix,
-					chatID,
-					message.unixTimestamp
-				);
-			})
-		);
+		try {
+			return await Promise.all(
+				messages.forEach((message) => {
+					this.sendscheduledMessage(
+						message.prefix + message.text + message.suffix,
+						chatID,
+						message.unixTimestamp
+					);
+				})
+			);
+		} catch (error) {
+			console.error(error);
+		}
 	}
 }
 

@@ -15,20 +15,23 @@ export const getScheduleTimeStamps = (
 	let date;
 	for (let index = 1; index < total + 1; index++) {
 		if (!date) date = new Date(`${scheduleStartDate} ${scheduleStartTime}`);
-		else date = addMinutes(date, scheduleInterval);
-		if (
-			isAfter(
-				date,
-				set(date, {
-					hours: scheduleStopTime.split(':')[0],
-					minutes: scheduleStopTime.split(':')[1]
-				})
-			)
-		) {
-			date = set(toDate(addDays(date, 1)), {
-				hours: scheduleNewDayStartTime.split(':')[0],
-				minutes: scheduleNewDayStartTime.split(':')[1]
-			});
+		else {
+			const newDate = addMinutes(date, scheduleInterval);
+			if (
+				newDate.getHours() === 0 || // 12 AM case
+				isAfter(
+					date,
+					set(date, {
+						hours: scheduleStopTime.split(':')[0],
+						minutes: scheduleStopTime.split(':')[1]
+					})
+				)
+			) {
+				date = set(toDate(addDays(date, 1)), {
+					hours: scheduleNewDayStartTime.split(':')[0],
+					minutes: scheduleNewDayStartTime.split(':')[1]
+				});
+			} else date = newDate;
 		}
 		timeStamps.push({
 			date: date,

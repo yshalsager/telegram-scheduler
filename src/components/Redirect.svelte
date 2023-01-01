@@ -5,7 +5,7 @@
 	export let url;
 	export let condition;
 	export let timeout = 0;
-
+	// $: console.log($condition);
 	$: $condition &&
 		$page.url.pathname !== url &&
 		setTimeout(() => {
