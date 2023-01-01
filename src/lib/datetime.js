@@ -20,7 +20,7 @@ export const getScheduleTimeStamps = (
 			if (
 				newDate.getHours() === 0 || // 12 AM case
 				isAfter(
-					date,
+					newDate,
 					set(date, {
 						hours: scheduleStopTime.split(':')[0],
 						minutes: scheduleStopTime.split(':')[1]

@@ -9,6 +9,10 @@
 	$: $condition &&
 		$page.url.pathname !== url &&
 		setTimeout(() => {
-			navigateAndReplaceState(url);
+			try {
+				navigateAndReplaceState(url);
+			} catch (err) {
+				console.error(err);
+			}
 		}, timeout);
 </script>
