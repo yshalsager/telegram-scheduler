@@ -2,7 +2,7 @@
 	import { navigateAndReplaceState } from '../lib/navigation.js';
 </script>
 
-<div class="hero min-h-screen">
+<div class="hero min-h-[75vh]">
 	<div class="hero-content text-center">
 		<div class="max-w-3xl">
 			<h1 class="text-5xl font-bold text-primary">مجدول رسائل تيليجرام</h1>

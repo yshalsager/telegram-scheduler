@@ -19,15 +19,15 @@
 	// TODO: Add settings page and clear data button
 </script>
 
-<div class="navbar bg-base text-primary border-b-2 mb-5">
+<div class="navbar bg-base-100 text-primary border-b-2 mb-5 sticky top-0 z-10">
 	<div class="flex-1">
-		<a href="/" class="text-xl font-bold">مجدول رسائل تيليجرام</a>
+		<a href="/" class="md:text-xl sm:text-md font-bold">مجدول رسائل تيليجرام</a>
 	</div>
 	{#if $isAuthenticated}
 		<span>مرحبا!<strong class="p-1">{$telegramUser.name ?? ''}</strong></span>
 	{/if}
 
-	<ul class="menu menu-horizontal bg-base p-2 rounded-box">
+	<ul class="menu menu-horizontal bg-base-100 p-2 rounded-box">
 		<li>
 			{#if $isAuthenticated}
 				<a id="signOutBtn" title="تسجيل خروج" href="#/" on:click={logOutAndShowToast}>
@@ -43,7 +43,7 @@
 				</a>
 			{/if}
 		</li>
-		<li>
+		<!-- <li>
 			<a
 				title="اﻹعدادات"
 				href="/settings"
@@ -51,7 +51,7 @@
 			>
 				<Gear size={24} weight="bold" />
 			</a>
-		</li>
+		</li> -->
 		<!-- svelte-ignore a11y-click-events-have-key-events -->
 		<li on:click={toggleTheme}>
 			<a title="تبديل المظهر" href="#/">

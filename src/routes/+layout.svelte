@@ -1,6 +1,4 @@
 <script>
-	import { browser } from '$app/environment';
-
 	import '../styles/app.postcss';
 	import Footer from '../components/Footer.svelte';
 	import Navbar from '../components/Navbar.svelte';
@@ -17,8 +15,8 @@
 
 	function beforeUnload(event) {
 		event.preventDefault();
-		// Logout if browser window is closed but not refreshed
-		browser && sessionStorage.getItem('tia') !== 'true' && logOut();
+		// Logout if browser window is closed or refreshed
+		logOut();
 		// Chrome requires returnValue to be set.
 		return (event.returnValue = '');
 	}
@@ -31,7 +29,7 @@
 <svelte:window on:beforeunload={beforeUnload} />
 
 <Navbar />
-<main class="container mx-auto min-h-screen">
+<main class="container mx-auto min-h-[75vh] min-w-full px-2">
 	<slot />
 </main>
 <Footer />

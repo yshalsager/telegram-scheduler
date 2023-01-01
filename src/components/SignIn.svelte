@@ -109,7 +109,7 @@
 			>
 		{/if}
 		<div class="form-control my-6">
-			<button on:click={logIn} class="btn btn-info text-base-100 mb-4">تسجيل الدخول</button>
+			<button on:click={logIn} class="btn btn-primary mb-4">تسجيل الدخول</button>
 			{#if $isLoggedOut}
 				<button on:click={logOutAndShowToast} class="btn btn-warning">تسجيل الخروج</button>
 			{/if}

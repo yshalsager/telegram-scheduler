@@ -1,4 +1,4 @@
-import { TelegramClient } from 'telegram';
+import { Api, TelegramClient } from 'telegram';
 import { StringSession } from 'telegram/sessions';
 
 class Telegram {
@@ -18,7 +18,7 @@ class Telegram {
 		this.apiId = Number(apiId);
 		this.apiHash = apiHash;
 		this.stringSession = new StringSession(stringSession);
-		this.isNewSignIn = !stringSession;
+		// this.isNewSignIn = !stringSession;
 	}
 
 	setupClient() {
@@ -56,6 +56,40 @@ class Telegram {
 			name: `${me.firstName || ''} ${me.lastName || ''}`.trim(),
 			id: String(me.id)
 		};
+	}
+
+	async getAllChats() {
+		// return {
+		// 	chats: [
+		// 		{ title: 'userbot', id: '-384723715' },
+		// 		{ title: 'ysh', id: '152405066' }
+		// 	]
+		// };
+		return await this.client.invoke(
+			new Api.messages.GetAllChats({
+				exceptIds: []
+			})
+		);
+	}
+
+	async sendscheduledMessage(messageText, chatID, scheduleTimeStamp) {
+		// const chat = await this.client.getEntity(chatID);
+		await this.client.sendMessage(chatID, {
+			message: messageText.trim(),
+			schedule: scheduleTimeStamp
+		});
+	}
+
+	async batchSendMessage(messages, chatID) {
+		return await Promise.allSettled(
+			messages.forEach((message) => {
+				this.sendscheduledMessage(
+					message.prefix + message.text + message.suffix,
+					chatID,
+					message.unixTimestamp
+				);
+			})
+		);
 	}
 }
 
