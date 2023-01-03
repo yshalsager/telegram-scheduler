@@ -30,7 +30,8 @@
 	<ul class="menu menu-horizontal bg-base-100 p-2 rounded-box">
 		<li>
 			{#if $isAuthenticated}
-				<a id="signOutBtn" title="تسجيل خروج" href="#/" on:click={logOutAndShowToast}>
+				<!-- svelte-ignore a11y-invalid-attribute -->
+				<a id="signOutBtn" title="تسجيل خروج" href="#" on:click={logOutAndShowToast}>
 					<SignOut size={24} weight="bold" />
 				</a>
 			{:else}
@@ -54,7 +55,8 @@
 		</li> -->
 		<!-- svelte-ignore a11y-click-events-have-key-events -->
 		<li on:click={toggleTheme}>
-			<a title="تبديل المظهر" href="#/">
+			<!-- svelte-ignore a11y-invalid-attribute -->
+			<a title="تبديل المظهر" href="#">
 				{#if $theme === 'telegramDark'}
 					<Moon size={24} weight="bold" />
 				{:else}
