@@ -1,18 +1,34 @@
-# create-svelte
+# Telegram Scheduler
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+> A simple web app to batch send/schedule messages from text file to Telegram chat.
 
-## Creating a project
+![screenshot](screenshot.png)
 
-If you're seeing this, you've probably already done this step. Congrats!
+![screenshot](screenshot_dark.png)
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+## Demo
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+You can check it [here](https://telegram-scheduler.yshalsager.com).
+
+## Features
+
+- 100% local and safe, no external connections or data collection.
+- Sign in Telegram using browser, no external services or hassle.
+- Save login for future usage.
+- Control how to split the text file by specifying line starts with character.
+- Add text before or after the message from file.
+- Set a start date and time for scheduled messages, control sending interval, and durations to not send in.
+- Live preview your messages text, chat, and time that it will be sent at.
+- Light and Dark themes.
+
+## Technologies / External libraries
+
+- HTML5, CSS, and JavaScript.
+- [Svelte](https://github.com/sveltejs/svelte) + [SvelteKit](https://github.com/sveltejs/kit).
+- [Tailwind CSS](https://github.com/tailwindlabs/tailwindcss) with [DaisyUI](https://github.com/saadeghi/daisyui).
+- [gramjs](https://github.com/gram-js/gramjs) and [date-fns](https://github.com/date-fns/date-fns).
+- [Vite](https://github.com/vitejs/vite).
+- npm.
 
 ## Developing
 
@@ -34,5 +50,3 @@ npm run build
 ```
 
 You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
