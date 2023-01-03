@@ -72,7 +72,7 @@ class Telegram {
 		);
 	}
 
-	async sendscheduledMessage(messageText, chatID, scheduleTimeStamp) {
+	async sendScheduledMessage(messageText, chatID, scheduleTimeStamp) {
 		// const chat = await this.client.getEntity(chatID);
 		await this.client.sendMessage(chatID, {
 			message: messageText.trim(),
@@ -81,19 +81,19 @@ class Telegram {
 	}
 
 	async batchSendMessage(messages, chatID) {
-		try {
-			return await Promise.all(
-				messages.forEach((message) => {
-					this.sendscheduledMessage(
-						message.prefix + message.text + message.suffix,
-						chatID,
-						message.unixTimestamp
-					);
-				})
-			);
-		} catch (error) {
-			console.error(error);
-		}
+		if (!messages) return;
+		const results = await Promise.all(
+			messages.map((message) => {
+				this.sendScheduledMessage(
+					message.prefix + message.text + message.suffix,
+					chatID,
+					message.unixTimestamp
+				);
+			})
+		);
+		const validResults = results.filter((result) => !(result instanceof Error));
+		results.filter((result) => result instanceof Error).forEach((result) => console.error(result));
+		return validResults.length === results.length;
 	}
 }
 
