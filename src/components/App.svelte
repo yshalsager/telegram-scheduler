@@ -272,7 +272,7 @@
 						{#each $textMessages as message}
 							<Message author={selectedChatTitle} messageDateTime={message.date}>
 								{@html message.prefix.replaceAll('\n', '<br />') +
-									message.text +
+									message.text.replaceAll('\n', '<br />') +
 									message.suffix.replaceAll('\n', '<br />')}
 							</Message>
 						{/each}
