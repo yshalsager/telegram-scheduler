@@ -9,18 +9,10 @@ export async function readAndSplitText(files, lineSeparator) {
 	// https://developer.mozilla.org/en-US/docs/Web/API/Blob/text
 	const selectedFileContent = await selectedFile.text();
 	let splittedText =
-		selectedFileContent.match(new RegExp(`^([\\s\\S]+?)(?=\\s+${lineSeparator})`, 'gm')) || [];
-	// Last match isn't included, let's add it.
-	const lastOccurrence = splittedText[splittedText.length - 1];
-	const remainingText = selectedFileContent.slice(
-		selectedFileContent.indexOf(lastOccurrence) + lastOccurrence.length + 1
-	);
-	const remainingMatch = remainingText.match(
-		new RegExp(`^([\\s\\S]+)(?!\\s+${lineSeparator})`, 'gm')
-	);
-	splittedText = splittedText.concat(remainingMatch);
-	// console.log(splittedText);
-	return splittedText.map((text, index) => {
-		return { id: index, text: text, prefix: '', suffix: '' };
-	});
+		selectedFileContent.split(new RegExp(`^([\\s\\S]+?)(?=\\s+${lineSeparator})`, 'gm')) || [];
+	return splittedText
+		.filter((line) => line !== '\n' && line !== '')
+		.map((text, index) => {
+			return { id: index, text: text.trim(), prefix: '', suffix: '' };
+		});
 }
