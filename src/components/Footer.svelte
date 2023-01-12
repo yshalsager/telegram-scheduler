@@ -10,11 +10,17 @@
 			><ClockCounterClockwise size={48} weight="bold" color="currentColor" /></span
 		>
 		<p class="font-bold">مجدول رسائل تيليجرام</p>
-		<p>تطوير: يوسف شعبان الصغير yshalsager</p>
+		<p>
+			تطوير: <a
+				class="link-primary"
+				href="https://github.com/yshalsager/"
+				aria-label="Github Profile">يوسف شعبان الصغير yshalsager</a
+			>
+		</p>
 	</div>
 	<div>
 		<div class="grid grid-flow-col gap-4">
-			<a href="https://github.com/yshalsager/" aria-label="Github Profile"
+			<a href="https://github.com/yshalsager/telegram-scheduler" aria-label="Github Profile"
 				><GithubLogo size={24} weight="bold" /></a
 			>
 			<a href="https://t.me/yshalsager" aria-label="Telegram Account"
