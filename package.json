@@ -26,7 +26,7 @@
 		"prettier-plugin-svelte": "^2.8.1",
 		"svelte": "^3.55.1",
 		"tailwindcss": "^3.2.4",
-		"telegram": "^2.15.4",
+		"telegram": "^2.15.5",
 		"vite": "^4.0.4"
 	},
 	"type": "module"
