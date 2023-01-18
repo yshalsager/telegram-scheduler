@@ -27,6 +27,7 @@
 	let messagePrefix = '';
 	let messageSuffix = '';
 	let scheduleTimestamps;
+	let isSending;
 	let isDone;
 
 	$: $textMessages &&
@@ -242,19 +243,23 @@
 						/>
 					</div>
 				</div>
-				{#if !isDone}
+				{#if isDone}
+					<button class="btn btn-primary text-base-100" on:click={resetApp}>البدء من جديد</button>
+				{:else if isSending}
+					<button class="btn btn-warning text-base-100">ترسل الرسائل الآن. انتظر قليلا.</button>
+				{:else}
 					<button
 						class="btn btn-primary text-base-100"
 						on:click={async () => {
+							isSending = true;
 							await telegram.batchSendMessage($textMessages, selectedChatID);
 							showToast('أرسلت الرسائل بنجاح!');
+							isSending = false;
 							isDone = true;
 						}}
 					>
 						إرسال</button
 					>
-				{:else}
-					<button class="btn btn-primary text-base-100" on:click={resetApp}>البدء من جديد</button>
 				{/if}
 			</div>
 			<div class="divider divider-horizontal" />
