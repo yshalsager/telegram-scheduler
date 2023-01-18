@@ -6,7 +6,7 @@
 	import { theme, isAuthenticated, telegramUser } from '../store.js';
 	import { page } from '$app/stores';
 
-	import Gear from 'phosphor-svelte/lib/Gear';
+	// import Gear from 'phosphor-svelte/lib/Gear';
 	import Moon from 'phosphor-svelte/lib/Moon';
 	import SignIn from 'phosphor-svelte/lib/SignIn';
 	import SignOut from 'phosphor-svelte/lib/SignOut';
