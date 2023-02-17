@@ -14,7 +14,7 @@
 		"@sveltejs/adapter-static": "^2.0.1",
 		"@sveltejs/kit": "^1.7.1",
 		"autoprefixer": "^10.4.13",
-		"daisyui": "^2.50.0",
+		"daisyui": "^2.50.1",
 		"date-fns": "^2.29.3",
 		"eslint": "^8.33.0",
 		"eslint-config-prettier": "^8.6.0",
