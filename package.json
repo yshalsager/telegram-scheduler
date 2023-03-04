@@ -16,7 +16,7 @@
 		"autoprefixer": "^10.4.13",
 		"daisyui": "^2.51.0",
 		"date-fns": "^2.29.3",
-		"eslint": "^8.34.0",
+		"eslint": "^8.35.0",
 		"eslint-config-prettier": "^8.6.0",
 		"eslint-plugin-svelte3": "^4.0.0",
 		"lodash-es": "^4.17.21",
