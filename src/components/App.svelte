@@ -146,7 +146,7 @@
 							class="select select-sm select-bordered select-primary w-full max-w-sm"
 						>
 							{#each chats as chat (chat.id)}
-								<option value={chat.id}>{chat.title}</option>
+								<option value={`${chat.id}|${chat.title}`}>{chat.title}</option>
 							{/each}
 						</select>
 					{:catch error}
