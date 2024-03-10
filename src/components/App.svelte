@@ -145,8 +145,8 @@
 							bind:value={selectedChat}
 							class="select select-sm select-bordered select-primary w-full max-w-sm"
 						>
-							{#each chats.chats as chat}
-								<option value={`${chat.id}|${chat.title}`}>{chat.title}</option>
+							{#each chats as chat (chat.id)}
+								<option value={chat.id}>{chat.title}</option>
 							{/each}
 						</select>
 					{:catch error}

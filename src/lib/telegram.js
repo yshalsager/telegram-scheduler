@@ -1,4 +1,5 @@
 import { Api, TelegramClient } from 'telegram';
+import { chats } from 'telegram/client';
 import { StringSession } from 'telegram/sessions';
 
 class Telegram {
@@ -108,23 +109,13 @@ class Telegram {
 	}
 
 	/**
-	 * Retrieves the information of all the chats by calling the TelegramClient's invoke() function.
-	 * with the Api.messages.GetAllChats method and it returns the chats except the exceptIds passed in the parameter.
+	 * Retrieves the information of all the chats by calling the TelegramClient's getDialogs function.
 	 * @async
-	 * @returns {Promise<Object>} - Returns an object containing the list of all chats
+	 * @returns {Promise<Object>} - Returns an array of objects containing the title and id of each chat
 	 */
 	async getAllChats() {
-		// return {
-		// 	chats: [
-		// 		{ title: 'userbot', id: '-384723715' },
-		// 		{ title: 'ysh', id: '152405066' }
-		// 	]
-		// };
-		return await this.client.invoke(
-			new Api.messages.GetAllChats({
-				exceptIds: []
-			})
-		);
+		const dialogs = await this.client.getDialogs({ archived: false });
+		return dialogs.map((dialog) => ({ title: dialog.title, id: dialog.id }));
 	}
 
 	/**
