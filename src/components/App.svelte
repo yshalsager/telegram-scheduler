@@ -5,31 +5,46 @@ import Message from './Message.svelte'
 import Redirect from './Redirect.svelte'
 
 import {getScheduleTimeStamps} from '../lib/datetime.js'
-import {readAndSplitText} from '../lib/files.js'
+import {splitTextContent} from '../lib/files.js'
 import {telegram} from '../lib/telegram.js'
 import {showToast} from '../lib/toast.js'
 import {isAuthenticated, isLoggedOut, isLoggedOutCompletely} from '../store.js'
 
 import {format} from 'date-fns'
-import isEmpty from 'lodash-es/isEmpty'
 import FileText from 'phosphor-svelte/lib/FileText'
 
 let selectedFile = $state()
 let selectedChat = $state()
 let files = $state()
-let rawTextMessages = $state([])
-let lineSeparator = $state('-')
+let rawText = $state('')
+let lineSeparators = $state([{value: '\n'}])
+let messagePrefix = $state('')
+let messageSuffix = $state('')
 let scheduleStartDate = $state(format(Date.now(), 'yyyy-MM-dd'))
 let scheduleStartTime = $state(format(Date.now(), 'HH:mm'))
 let scheduleInterval = $state(60)
 let scheduleStopTime = $state('22:00')
 let scheduleNewDayStartTime = $state('09:00')
-let messagePrefix = $state('')
-let messageSuffix = $state('')
 let isSending = $state()
 let isDone = $state()
 
-let [selectedChatID, selectedChatTitle] = $derived(selectedChat?.split('|') || ['', ''])
+const [selectedChatID, selectedChatTitle] = $derived(selectedChat?.split('|') || ['', ''])
+
+const rawTextMessages = $derived.by(() => {
+    if (!rawText) return []
+    let messages = [{text: rawText}]
+    lineSeparators.forEach(separator => {
+        if (!separator.value) return
+        messages = messages.flatMap(msg => splitTextContent(msg.text, separator.value))
+    })
+    return messages
+        .filter(msg => msg.text.length)
+        .map(msg => ({
+            ...msg,
+            prefix: messagePrefix,
+            suffix: messageSuffix
+        }))
+})
 
 let scheduleTimestamps = $derived.by(() => {
     if (!rawTextMessages.length || !scheduleStartDate || !scheduleStartTime || !scheduleInterval)
@@ -50,8 +65,7 @@ let scheduleTimestamps = $derived.by(() => {
     }
 })
 
-// Derive the final text messages with prefix, suffix, and timestamps
-let textMessages = $derived.by(() => {
+const textMessages = $derived.by(() => {
     return rawTextMessages.map((message, index) => ({
         ...message,
         prefix: messagePrefix,
@@ -62,18 +76,30 @@ let textMessages = $derived.by(() => {
 
 async function readText() {
     selectedFile = files.item(0).name
-    rawTextMessages = await readAndSplitText(files, lineSeparator)
+    rawText = await files.item(0).text()
 }
 
 function resetApp() {
     selectedFile = undefined
     files = undefined
-    rawTextMessages = []
+    rawText = ''
     scheduleStartDate = format(Date.now(), 'yyyy-MM-dd')
     scheduleStartTime = format(Date.now(), 'HH:mm')
     messagePrefix = ''
     messageSuffix = ''
     isDone = false
+}
+
+function addSeparator() {
+    lineSeparators = [...lineSeparators, {value: ''}]
+}
+
+function updateSeparator(index, value) {
+    lineSeparators = lineSeparators.map((sep, i) => (i === index ? {value} : sep))
+}
+
+function removeSeparator(index) {
+    lineSeparators = lineSeparators.filter((_, i) => i !== index)
 }
 </script>
 
@@ -84,17 +110,33 @@ function resetApp() {
         <div class="flex min-w-full flex-wrap py-6 sm:flex-nowrap">
             <div class="flex basis-1/2 flex-col items-center justify-center gap-4">
                 <div class="form-control w-full max-w-sm">
-                    <label class="label" for="lineSeparator">
-                        <span class="label-text">تقسيم الملف حسب كل سطر يبدأ ب: </span>
+                    <label class="label" for="lineSeparators">
+                        <span class="label-text">تقسيم الملف حسب:</span>
                     </label>
-                    <input
-                        class="input input-sm input-primary w-full max-w-sm"
-                        type="text"
-                        id="lineSeparator"
-                        placeholder="-"
-                        bind:value={lineSeparator}
-                        onchange={readText}
-                    />
+                    <div class="flex flex-col gap-2">
+                        {#each lineSeparators as separator, index}
+                            <div class="flex items-center gap-2">
+                                <input
+                                    class="input input-sm input-primary flex-grow"
+                                    type="text"
+                                    placeholder="أدخل علامة التقسيم"
+                                    value={separator.value}
+                                    oninput={e => updateSeparator(index, e.target.value)}
+                                />
+                                {#if index > 0}
+                                    <button
+                                        class="btn btn-ghost btn-sm text-error"
+                                        onclick={() => removeSeparator(index)}
+                                    >
+                                        ✕
+                                    </button>
+                                {/if}
+                            </div>
+                        {/each}
+                        <button class="btn btn-outline btn-primary btn-sm" onclick={addSeparator}>
+                            + إضافة علامة تقسيم
+                        </button>
+                    </div>
                 </div>
                 <div class="form-control w-full max-w-sm">
                     <label class="label" for="lineSeparator">
@@ -259,17 +301,22 @@ function resetApp() {
             </div>
             <div class="divider divider-horizontal"></div>
             <div class="flex basis-1/2 flex-col items-center justify-center overflow-y-auto">
-                {#if isEmpty(textMessages)}
+                {#if !selectedFile}
                     <span class="mt-4 border-4 p-8 sm:p-32">هنا ستظهر الرسائل بعد اختيار ملف.</span>
+                {:else}
+                    <div class="self-start py-3">
+                        <span
+                            >الرسائل الموجودة في ملف <strong class="mr-1">{selectedFile}</strong
+                            ></span
+                        >
+                        <span class="text-sm text-gray-500">
+                            (عدد الرسائل: {rawTextMessages.length})
+                        </span>
+                    </div>
                 {/if}
-                {#if selectedFile}
-                    <span class="self-start py-3"
-                        >الرسائل الموجودة في ملف<strong class="mr-1">{selectedFile}</strong>:</span
-                    >
-                {/if}
-                {#if textMessages}
+                {#if rawTextMessages.length > 1}
                     <div class="max-h-[75vh]">
-                        {#each textMessages as message}
+                        {#each rawTextMessages as message}
                             <Message author={selectedChatTitle} messageDateTime={message.date}>
                                 {@html DOMPurify.sanitize(
                                     message.prefix.replaceAll('\n', '<br />'),

@@ -155,8 +155,8 @@ class Telegram {
             } catch (error) {
                 console.error(error)
                 if (error.errorMessage === 'FLOOD') {
+									console.warn(`Got flood wait, will sleep for ${error.seconds} seconds.`)
                     await new Promise(resolve => setTimeout(resolve, error.seconds * 1000))
-                    console.warn(`Got flood wait, will sleep for ${error.seconds} seconds.`)
                 } else throw error
             }
             // Wait for 1 seconds after sending a message
