@@ -21,7 +21,6 @@
 		"eslint": "^9.15.0",
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-svelte": "^2.46.0",
-		"lodash-es": "^4.17.21",
 		"phosphor-svelte": "^2.0.1",
 		"postcss": "^8.4.49",
 		"prettier": "^3.3.3",

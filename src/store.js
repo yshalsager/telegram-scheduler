@@ -1,6 +1,6 @@
 import {writable, derived} from 'svelte/store'
 import {browser} from '$app/environment'
-import isEmpty from 'lodash-es/isEmpty'
+import {isEmpty} from './lib/utils.js'
 
 // Toast
 export const toastMessage = writable('')

@@ -2,7 +2,7 @@
 import {telegram} from '../lib/telegram.js'
 import {logOutCompletely} from '../lib/logout.js'
 import {showToast} from '../lib/toast.js'
-import isEmpty from 'lodash-es/isEmpty'
+import {isEmpty} from '../lib/utils.js'
 
 import {
     isAuthenticated,
