@@ -1,29 +1,14 @@
 {
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-
-  extends: [
-    // https://docs.renovatebot.com/presets-config/#configbase
-    "config:base",
-    // https://docs.renovatebot.com/presets-default/#enableprecommit
-    ":enablePreCommit",
-    // https://docs.renovatebot.com/presets-default/#rebasestaleprs
-    ":rebaseStalePrs",
-  ],
-
-  // https://docs.renovatebot.com/configuration-options/#labels
+  $schema: "https://docs.renovatebot.com/renovate-schema.json",
+  extends: ["config:recommended", ":enablePreCommit", ":rebaseStalePrs"],
   labels: ["dependencies"],
-
-  // https://docs.renovatebot.com/configuration-options/#schedule
   schedule: ["before 5am on saturday"],
-
-  "packageRules": [
+  packageRules: [
     {
       matchUpdateTypes: ["minor", "patch", "pin", "digest"],
-      automerge: true
-    }
+      automerge: true,
+    },
   ],
-
-  // https://docs.renovatebot.com/configuration-options/#lockfilemaintenance
   lockFileMaintenance: {
     enabled: true,
     automerge: true,
