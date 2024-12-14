@@ -25,7 +25,7 @@ importers:
         version: 10.4.20(postcss@8.4.49)
       daisyui:
         specifier: ^4.12.14
-        version: 4.12.14(postcss@8.4.49)
+        version: 4.12.22(postcss@8.4.49)
       date-fns:
         specifier: ^4.1.0
         version: 4.1.0
@@ -612,8 +612,8 @@ packages:
     resolution: {integrity: sha512-MOqHvMWF9/9MX6nza0KgvFH4HpMU0EF5uUDXqX/BtxtU8NfB0QzRtJ8Oe/6SuS4kbhyzVJwjd97EA4PKrzJ8bw==}
     engines: {node: '>=0.12'}
 
-  daisyui@4.12.14:
-    resolution: {integrity: sha512-hA27cdBasdwd4/iEjn+aidoCrRroDuo3G5W9NDKaVCJI437Mm/3eSL/2u7MkZ0pt8a+TrYF3aT2pFVemTS3how==}
+  daisyui@4.12.22:
+    resolution: {integrity: sha512-HDLWbmTnXxhE1MrMgSWjVgdRt+bVYHvfNbW3GTsyIokRSqTHonUTrxV3RhpPDjGIWaHt+ELtDCTYCtUFgL2/Nw==}
     engines: {node: '>=16.9.0'}
 
   date-fns@4.1.0:
@@ -1970,7 +1970,7 @@ snapshots:
       es5-ext: 0.10.64
       type: 2.7.3
 
-  daisyui@4.12.14(postcss@8.4.49):
+  daisyui@4.12.22(postcss@8.4.49):
     dependencies:
       css-selector-tokenizer: 0.8.0
       culori: 3.3.0
