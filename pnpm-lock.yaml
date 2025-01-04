@@ -42,8 +42,8 @@ importers:
         specifier: ^2.46.0
         version: 2.46.1(eslint@9.17.0(jiti@1.21.7))(svelte@5.16.1)
       phosphor-svelte:
-        specifier: ^2.0.1
-        version: 2.0.1(svelte@5.16.1)
+        specifier: ^3.0.0
+        version: 3.0.1(svelte@5.16.1)(vite@5.4.11)
       postcss:
         specifier: ^8.4.49
         version: 8.4.49
@@ -789,6 +789,9 @@ packages:
     resolution: {integrity: sha512-MMdARuVEQziNTeJD8DgMqmhwR11BRQ/cBP+pLtYdSTnf3MIO8fFeiINEbX36ZdNlfU/7A9f3gUw49B3oQsvwBA==}
     engines: {node: '>=4.0'}
 
+  estree-walker@3.0.3:
+    resolution: {integrity: sha512-7RUKfXgSMMkzt6ZuXmqapOurLGPPfgj6l9uRZ7lRGolvk0y2yocc35LdcxKC5PQZdn2DMqioAQ2NoWcrTKmm6g==}
+
   esutils@2.0.3:
     resolution: {integrity: sha512-kVscqXk4OCp68SZ0dkgEKVi6/8ij300KBWTJq32P/dYeWTSwK41WyTxalN1eRmA5Z9UU/LX9D7FWSmV9SAYx6g==}
     engines: {node: '>=0.10.0'}
@@ -1112,10 +1115,14 @@ packages:
     resolution: {integrity: sha512-Xa4Nw17FS9ApQFJ9umLiJS4orGjm7ZzwUrwamcGQuHSzDyth9boKDaycYdDcZDuqYATXw4HFXgaqWTctW/v1HA==}
     engines: {node: '>=16 || 14 >=14.18'}
 
-  phosphor-svelte@2.0.1:
-    resolution: {integrity: sha512-2Ryvaf1sfCNOF0zTQVghtxOs/6JKn9MV+e9uluNAT9wAosgNYnaBD210WcFGRrva1sF8cddv7EWSS//ITNN4mg==}
+  phosphor-svelte@3.0.1:
+    resolution: {integrity: sha512-QuxdzWCBjNZXglk4XpmaKb+JRA6XgKOYWpBY8k82NZwxO5ec7u2iFuueAijKYgj/7hLWHtreAPc2Q5uZFNTRSQ==}
     peerDependencies:
-      svelte: '>=3'
+      svelte: ^5.0.0 || ^5.0.0-next.96
+      vite: '>=5'
+    peerDependenciesMeta:
+      vite:
+        optional: true
 
   picocolors@1.1.1:
     resolution: {integrity: sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA==}
@@ -2194,6 +2201,10 @@ snapshots:
 
   estraverse@5.3.0: {}
 
+  estree-walker@3.0.3:
+    dependencies:
+      '@types/estree': 1.0.6
+
   esutils@2.0.3: {}
 
   event-emitter@0.3.5:
@@ -2472,9 +2483,13 @@ snapshots:
       lru-cache: 10.4.3
       minipass: 7.1.2
 
-  phosphor-svelte@2.0.1(svelte@5.16.1):
+  phosphor-svelte@3.0.1(svelte@5.16.1)(vite@5.4.11):
     dependencies:
+      estree-walker: 3.0.3
+      magic-string: 0.30.17
       svelte: 5.16.1
+    optionalDependencies:
+      vite: 5.4.11
 
   picocolors@1.1.1: {}
 
