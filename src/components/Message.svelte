@@ -6,15 +6,15 @@ let {author, messageDateTime, children} = $props()
 </script>
 
 <div
-    class="relative mb-4 max-w-sm rounded-b-lg rounded-tr-lg bg-white px-2 py-1 text-start
-    text-gray-800 drop-shadow dark:bg-gray-700 dark:text-gray-100"
+    class="bg-base-100 text-base-content relative mb-4 max-w-sm rounded-tr-lg rounded-b-lg px-2 py-1 text-start drop-shadow-sm
+        dark:bg-gray-700 dark:text-gray-100"
 >
-    <i class="pointer-events-none absolute -left-2 -top-px">
+    <i class="pointer-events-none absolute -top-px -left-2">
         <svg width="10px" height="20px" viewBox="0 0 10 20">
             <g fill="none">
                 <path
                     fill="currentColor"
-                    class="fill-white dark:fill-gray-800"
+                    class="fill-base-100 dark:fill-gray-700"
                     d="M8,1 L9,1 L9,20 L8,20 L8,18 C7.807,15.161 7.124,12.233 5.950,9.218 C5.046,6.893 3.504,4.733 1.325,2.738 L1.325,2.738 C0.917,2.365 0.89,1.732 1.263,1.325 C1.452,1.118 1.72,1 2,1 L8,1 Z"
                 />
                 <path
@@ -31,8 +31,8 @@ let {author, messageDateTime, children} = $props()
     </i>
     {#if author}
         <div
-            class="mt-1 overflow-hidden overflow-ellipsis whitespace-nowrap text-sm leading-4
-            text-blue-600 dark:text-blue-400"
+            class="text-primary mt-1 overflow-hidden text-sm leading-4 overflow-ellipsis
+                whitespace-nowrap dark:text-blue-400"
         >
             {#if authorChannel}
                 <a href={authorChannel}><span dir="auto">{author}</span></a>
@@ -42,13 +42,13 @@ let {author, messageDateTime, children} = $props()
         </div>
     {/if}
 
-    <div class="mt-1.5 break-words text-sm leading-6" dir="auto">
+    <div class="mt-1.5 text-sm leading-6 break-words" dir="auto">
         {@render children?.()}
     </div>
 
     {#if messageDateTime}
         <div
-            class="-mr-0.5 mt-1 overflow-hidden text-xs leading-4 text-gray-500 dark:text-gray-400"
+            class="text-secondary mt-1 -mr-0.5 overflow-hidden text-xs leading-4 dark:text-gray-400"
         >
             <time datetime={format(messageDateTime, "yyyy-MM-dd'T'HH:mm:ssxx")} class="time"
                 >{format(messageDateTime, 'yyyy-MM-dd HH:mm')}</time

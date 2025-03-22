@@ -111,10 +111,12 @@ const logOutAndShowToast = () => {
             >
         {/if}
         <div class="form-control my-6">
-            <button onclick={logIn} class="btn btn-primary mb-4">تسجيل الدخول</button>
-            {#if $isLoggedOut}
-                <button onclick={logOutAndShowToast} class="btn btn-warning">تسجيل الخروج</button>
-            {/if}
+            <div class="flex flex-wrap gap-4 justify-center">
+                <button onclick={logIn} class="btn btn-primary">تسجيل الدخول</button>
+                {#if $isLoggedOut}
+                    <button onclick={logOutAndShowToast} class="btn btn-warning">تسجيل الخروج</button>
+                {/if}
+            </div>
         </div>
     </div>
 {:else}

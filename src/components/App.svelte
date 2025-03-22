@@ -106,7 +106,7 @@ function removeSeparator(index) {
 <Redirect url="/login/" condition={isLoggedOut} />
 <Redirect url="/login/" condition={isLoggedOutCompletely} />
 {#if isAuthenticated}
-    <div id="filePreview" class="min-h-[75vh] w-full bg-base-100">
+    <div id="filePreview" class="bg-base-100 min-h-[75vh] w-full">
         <div class="flex min-w-full flex-wrap py-6 sm:flex-nowrap">
             <div class="flex basis-1/2 flex-col items-center justify-center gap-4">
                 <div class="form-control w-full max-w-sm">
@@ -117,7 +117,7 @@ function removeSeparator(index) {
                         {#each lineSeparators as separator, index}
                             <div class="flex items-center gap-2">
                                 <input
-                                    class="input input-sm input-primary flex-grow"
+                                    class="input input-sm input-primary grow"
                                     type="text"
                                     placeholder="أدخل علامة التقسيم"
                                     value={separator.value}
@@ -154,7 +154,7 @@ function removeSeparator(index) {
                         class="invisible hidden"
                     />
                     <button
-                        class="btn btn-outline btn-primary btn-sm gap-2 normal-case text-base-100"
+                        class="btn btn-outline btn-primary btn-sm gap-2 normal-case"
                         onclick={() => document.getElementById('filesInput').click()}
                     >
                         {#if !selectedFile}
@@ -188,7 +188,7 @@ function removeSeparator(index) {
                 </div>
                 <div class="flex flex-wrap items-end gap-2 sm:flex-nowrap">
                     <div class="form-control">
-                        <label class="label" for="messagePrefix">
+                        <label class="label mb-2" for="messagePrefix">
                             <span class="label-text">إضافة نص قبل الرسالة: </span>
                         </label>
                         <textarea
@@ -196,11 +196,11 @@ function removeSeparator(index) {
                             type="text"
                             placeholder=""
                             bind:value={messagePrefix}
-                            class="textarea textarea-bordered textarea-primary"
+                            class="border-2 textarea textarea-bordered textarea-primary"
                         ></textarea>
                     </div>
                     <div class="form-control">
-                        <label class="label" for="messageSuffix">
+                        <label class="label mb-2" for="messageSuffix">
                             <span class="label-text">إضافة نص بعد الرسالة: </span>
                         </label>
                         <textarea
@@ -208,13 +208,13 @@ function removeSeparator(index) {
                             type="text"
                             placeholder=""
                             bind:value={messageSuffix}
-                            class="textarea textarea-bordered textarea-primary"
+                            class="border-2 textarea textarea-bordered textarea-primary"
                         ></textarea>
                     </div>
                 </div>
                 <div class="flex w-full flex-wrap items-end gap-2 sm:flex-nowrap">
                     <div class="form-control">
-                        <label class="label" for="scheduleStartDate">
+                        <label class="label mb-2" for="scheduleStartDate">
                             <span class="label-text">تاريخ بداية النشر: </span>
                         </label>
                         <input
@@ -226,7 +226,7 @@ function removeSeparator(index) {
                         />
                     </div>
                     <div class="form-control">
-                        <label class="label" for="scheduleStartTime">
+                        <label class="label mb-2" for="scheduleStartTime">
                             <span class="label-text">توقيت بداية النشر حاليا: </span>
                         </label>
                         <input
@@ -240,7 +240,7 @@ function removeSeparator(index) {
                 </div>
                 <div class="flex w-full flex-wrap items-end gap-2 sm:flex-nowrap">
                     <div class="form-control">
-                        <label class="label" for="scheduleInterval">
+                        <label class="label mb-2" for="scheduleInterval">
                             <span class="label-text">الفاصل بين الرسائل بالدقائق: </span>
                         </label>
                         <input
@@ -252,7 +252,7 @@ function removeSeparator(index) {
                         />
                     </div>
                     <div class="form-control">
-                        <label class="label" for="scheduleStopTime">
+                        <label class="label mb-2" for="scheduleStopTime">
                             <span class="label-text">إيقاف النشر بعد الساعة: </span>
                         </label>
                         <input
@@ -264,7 +264,7 @@ function removeSeparator(index) {
                         />
                     </div>
                     <div class="form-control">
-                        <label class="label" for="scheduleNewDayStartTime">
+                        <label class="label mb-2" for="scheduleNewDayStartTime">
                             <span class="label-text">بدء النشر مجددا بعد الساعة: </span>
                         </label>
                         <input
@@ -302,7 +302,7 @@ function removeSeparator(index) {
             <div class="divider divider-horizontal"></div>
             <div class="flex basis-1/2 flex-col items-center justify-center overflow-y-auto">
                 {#if !selectedFile}
-                    <span class="mt-4 border-4 p-8 sm:p-32">هنا ستظهر الرسائل بعد اختيار ملف.</span>
+                    <span class="mt-4 border-2 p-8 sm:p-32">هنا ستظهر الرسائل بعد اختيار ملف.</span>
                 {:else}
                     <div class="self-start py-3">
                         <span

@@ -1,6 +1,69 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@plugin "daisyui" {
+  themes: telegram --default, telegramDark --prefersdark;
+}
+
+@plugin "daisyui/theme" {
+  name: "telegram";
+  prefersdark: false;
+  color-scheme: light;
+  default: true;
+  
+  --color-base-100: oklch(98% 0.01 240);
+  --color-base-200: oklch(95% 0.02 235);
+  --color-base-300: oklch(90% 0.03 230);
+  --color-base-content: oklch(25% 0.04 240);
+  --color-primary: #2481cc;
+  --color-primary-content: oklch(98% 0.01 240);
+  --color-secondary: #7d7f81;
+  --color-secondary-content: oklch(98% 0.01 220);
+  --color-accent: #4ca3e2;
+  --color-accent-content: oklch(98% 0.01 210);
+  --color-neutral: #181A2A;
+  --color-neutral-content: oklch(98% 0.01 240);
+  --color-info: #2392e7;
+  --color-info-content: oklch(98% 0.01 220);
+  --color-success: #7bc862;
+  --color-success-content: oklch(98% 0.01 150);
+  --color-warning: #ffcd6a;
+  --color-warning-content: oklch(20% 0.05 70);
+  --color-error: #e17076;
+  --color-error-content: oklch(98% 0.01 20);
+
+  --radius-selector: 1rem;
+  --radius-field: 0.25rem;
+  --radius-box: 0.5rem;
+}
+
+@plugin "daisyui/theme" {
+  name: "telegramDark";
+  prefersdark: true;
+  color-scheme: dark;
+  
+  --color-base-100: oklch(18% 0.01 240);
+  --color-base-200: oklch(15% 0.02 235);
+  --color-base-300: oklch(12% 0.03 230);
+  --color-base-content: oklch(90% 0.03 240);
+  --color-primary: #1c93e3;
+  --color-primary-content: oklch(15% 0.01 240);
+  --color-secondary: #7d7f81;
+  --color-secondary-content: oklch(15% 0.01 220);
+  --color-accent: #64b5ef;
+  --color-accent-content: oklch(15% 0.01 210);
+  --color-neutral: #1e1e1e;
+  --color-neutral-content: oklch(90% 0.01 240);
+  --color-info: #64b5ef;
+  --color-info-content: oklch(15% 0.01 220);
+  --color-success: #7cc766;
+  --color-success-content: oklch(15% 0.01 150);
+  --color-warning: #e9b653;
+  --color-warning-content: oklch(15% 0.03 70);
+  --color-error: #e0645e;
+  --color-error-content: oklch(15% 0.01 20);
+  --radius-selector: 1rem;
+  --radius-field: 0.25rem;
+  --radius-box: 0.5rem;
+}
 
 @layer base {
     @font-face {
