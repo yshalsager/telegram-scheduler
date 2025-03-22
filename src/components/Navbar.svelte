@@ -19,7 +19,7 @@ const logOutAndShowToast = () => {
 // TODO: Add settings page and clear data button
 </script>
 
-<div class="navbar sticky top-0 z-10 mb-5 border-b-2 bg-base-100 text-primary">
+<div class="navbar bg-base-100 text-primary sticky top-0 z-10 mb-5 border-b-2">
     <div class="flex-1">
         <a href="/" class="sm:text-md font-bold md:text-xl">مجدول رسائل تيليجرام</a>
     </div>
@@ -55,15 +55,22 @@ const logOutAndShowToast = () => {
 			</a>
 		</li> -->
         <!-- svelte-ignore a11y_click_events_have_key_events a11y_no_noninteractive_element_interactions -->
-        <li onclick={toggleTheme}>
-            <!-- svelte-ignore a11y_invalid_attribute -->
-            <a title="تبديل المظهر" href="#">
-                {#if $theme === 'telegramDark'}
-                    <Moon size={24} weight="bold" />
-                {:else}
+        <li>
+            <label class="swap swap-rotate">
+                <!-- this hidden checkbox controls the state -->
+                <input
+                    type="checkbox"
+                    class="theme-controller"
+                    value={$theme}
+                    onchange={(e) => toggleTheme(e.target.value)}
+                />
+                <div class="swap-off">
                     <Sun size={24} weight="bold" />
-                {/if}
-            </a>
+                </div>
+                <div class="swap-on">
+                    <Moon size={24} weight="bold" />
+                </div>
+            </label>
         </li>
     </ul>
 </div>
