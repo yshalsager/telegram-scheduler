@@ -28,7 +28,7 @@ importers:
         version: 10.4.21(postcss@8.5.6)
       daisyui:
         specifier: ^5.0.0
-        version: 5.2.1
+        version: 5.3.7
       date-fns:
         specifier: ^4.1.0
         version: 4.1.0
@@ -677,8 +677,8 @@ packages:
     resolution: {integrity: sha512-MOqHvMWF9/9MX6nza0KgvFH4HpMU0EF5uUDXqX/BtxtU8NfB0QzRtJ8Oe/6SuS4kbhyzVJwjd97EA4PKrzJ8bw==}
     engines: {node: '>=0.12'}
 
-  daisyui@5.2.1:
-    resolution: {integrity: sha512-FQSk8GR2rjMNkH7kUKarUtnU5mwGLp5sm6RKHnYi615AKfi+s0ug748LNH4hPQ3anBjjpubgybe17c9Fqdrz3Q==}
+  daisyui@5.3.7:
+    resolution: {integrity: sha512-0+8PaSGift0HlIQABCeZzWOBV5Nx/vsI2TihB9hbaEyZENPlZZz+se2JnAH5rz9gBYTyDLB7NJup8hkREr6WBw==}
 
   date-fns@4.1.0:
     resolution: {integrity: sha512-Ukq0owbQXxa/U3EGtsdVBkR1w7KOQ5gIBqdH2hkvknzZPYvBxb/aa6E8L7tmjFtkwZBu3UXBbjIgPo/Ez4xaNg==}
@@ -1928,7 +1928,7 @@ snapshots:
       es5-ext: 0.10.64
       type: 2.7.3
 
-  daisyui@5.2.1: {}
+  daisyui@5.3.7: {}
 
   date-fns@4.1.0: {}
 
