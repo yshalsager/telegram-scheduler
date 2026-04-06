@@ -31,7 +31,7 @@
 		"svelte-eslint-parser": "^1.4.0",
 		"tailwindcss": "^4.1.15",
 		"telegram": "browser",
-		"vite": "^7.1.11"
+		"vite": "^7.3.2"
 	},
 	"type": "module",
 	"pnpm": {
