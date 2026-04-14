@@ -5,15 +5,14 @@ import {navigateAndReplaceState} from '../lib/navigation.js'
 <div class="hero min-h-[75vh]">
     <div class="hero-content text-center">
         <div class="max-w-3xl">
-            <h1 class="text-5xl font-bold text-primary">مجدول رسائل تيليجرام</h1>
+            <h1 class="text-5xl font-bold text-primary">Telegram 消息定时发送系统</h1>
             <p class="py-6 text-lg dark:text-gray-300">
-                طريقة سهلة لجدولة رسائل تيليجرام المخزنة في ملف نصي. كل ما عليك هو تسجيل الدخول، ثم
-                اختيار الملف، واختيار المحادثة التي تود إرسال الرسائل إليها، وإعداد كيفية الجدولة ثم
-                اﻹرسال!
+                企业级 Telegram 定时消息批处理解决方案。只需登录您的账号，上传包含消息内容的文本文件，
+                选择目标联系人或群组，配置发送计划，即可实现自动化批量发送！
             </p>
             <button
                 class="btn btn-primary btn-lg text-xl text-base-100"
-                onclick={() => navigateAndReplaceState('/app/')}>البدء الآن!</button
+                onclick={() => navigateAndReplaceState('/app/')}>立即开始使用</button
             >
         </div>
     </div>

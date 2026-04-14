@@ -13,7 +13,7 @@ import SignOut from 'phosphor-svelte/lib/SignOut'
 import Sun from 'phosphor-svelte/lib/Sun'
 
 const logOutAndShowToast = () => {
-    showToast('سجل الخروج بنجاح!', logOut)
+    showToast('已成功退出登录！', logOut)
 }
 
 // TODO: Add settings page and clear data button
@@ -21,22 +21,22 @@ const logOutAndShowToast = () => {
 
 <div class="navbar bg-base-100 text-primary sticky top-0 z-10 mb-5 border-b-2">
     <div class="flex-1">
-        <a href="/" class="sm:text-md font-bold md:text-xl">مجدول رسائل تيليجرام</a>
+        <a href="/" class="sm:text-md font-bold md:text-xl">Telegram 消息定时发送系统</a>
     </div>
     {#if $isAuthenticated}
-        <span>مرحبا!<strong class="p-1">{$telegramUser.name ?? ''}</strong></span>
+        <span>欢迎，<strong class="p-1">{$telegramUser.name ?? ''}</strong></span>
     {/if}
 
     <ul class="menu menu-horizontal rounded-box bg-base-100 p-2">
         <li>
             {#if $isAuthenticated}
                 <!-- svelte-ignore a11y_invalid_attribute -->
-                <a id="signOutBtn" title="تسجيل خروج" href="#" onclick={logOutAndShowToast}>
+                <a id="signOutBtn" title="退出登录" href="#" onclick={logOutAndShowToast}>
                     <SignOut size={24} weight="bold" />
                 </a>
             {:else}
                 <a
-                    title="تسجيل الدخول"
+                    title="登录系统"
                     href="/login"
                     onclick={() =>
                         $page.url.pathname !== '/login' && navigateAndReplaceState('/login')}

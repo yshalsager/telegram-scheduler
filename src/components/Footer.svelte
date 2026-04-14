@@ -9,12 +9,12 @@ import ClockCounterClockwise from 'phosphor-svelte/lib/ClockCounterClockwise'
         <span class="text-primary mb-2">
             <ClockCounterClockwise size={48} weight="bold" color="currentColor" />
         </span>
-        <p class="font-bold">مجدول رسائل تيليجرام</p>
+        <p class="font-bold">Telegram 消息定时发送系统</p>
         <p>
-            تطوير: <a
+            开发者: <a
                 class="link-primary"
                 href="https://github.com/yshalsager/"
-                aria-label="Github Profile">يوسف شعبان الصغير yshalsager</a
+                aria-label="Github Profile">Yousef Shaban (yshalsager)</a
             >
         </p>
     </div>

@@ -33,7 +33,7 @@ const logIn = async () => {
         signedIn = await telegram.newSignIn(phoneNumber)
     }
     if (signedIn) {
-        showToast('سجل الدخول بنجاح!')
+        showToast('登录成功！')
         if (isEmpty($telegramStringSession)) {
             // Save to store
             telegramApiID.set(apiID)
@@ -43,13 +43,13 @@ const logIn = async () => {
         telegramUser.set(await telegram.getMe())
         isAuthenticated.set(true)
     } else {
-        showToast('فشل تسجيل الدخول!')
+        showToast('登录失败！')
     }
     return signedIn
 }
 
 const logOutAndShowToast = () => {
-    showToast('سجل الخروج بنجاح!', logOutCompletely)
+    showToast('已成功退出登录！', logOutCompletely)
 }
 </script>
 
@@ -59,7 +59,7 @@ const logOutAndShowToast = () => {
             <div class="form-control">
                 <label class="label" for="apiID">
                     <span class="label-text">API ID</span>
-                    <span class="badge badge-secondary">مطلوب</span>
+                    <span class="badge badge-secondary">必填</span>
                 </label>
                 <input
                     name="apiID"
@@ -68,12 +68,12 @@ const logOutAndShowToast = () => {
                     class="input input-bordered input-primary"
                     bind:value={apiID}
                 />
-                <span class="label label-text-alt">معرف واجهة برمجة تيليجرام للحساب الشخصي.</span>
+                <span class="label label-text-alt">Telegram 个人账号的 API ID。</span>
             </div>
             <div class="form-control">
                 <label class="label" for="apiHash">
                     <span class="label-text">API Hash</span>
-                    <span class="badge badge-secondary">مطلوب</span>
+                    <span class="badge badge-secondary">必填</span>
                 </label>
                 <input
                     name="apiHash"
@@ -83,13 +83,13 @@ const logOutAndShowToast = () => {
                     bind:value={apiHash}
                 />
                 <span class="label label-text-alt"
-                    >الهاش الخاص بواجهة برمجة تيليجرام للحساب الشخصي.</span
+                    >Telegram 个人账号的 API Hash。</span
                 >
             </div>
             <div class="form-control">
                 <label class="label" for="phone">
-                    <span class="label-text">رقم الهاتف</span>
-                    <span class="badge badge-secondary">مطلوب</span>
+                    <span class="label-text">手机号码</span>
+                    <span class="badge badge-secondary">必填</span>
                 </label>
                 <input
                     name="phone"
@@ -99,29 +99,28 @@ const logOutAndShowToast = () => {
                     class="input input-bordered input-primary self-end"
                     bind:value={phoneNumber}
                 />
-                <span class="label label-text-alt">رقم هاتف حساب تيليجرام بالتنسيق الدولي.</span>
+                <span class="label label-text-alt">包含国际区号的 Telegram 手机号码（如 +86...）。</span>
             </div>
             <span class="label-text-alt mt-6"
-                >سيتم حفظ بيانات تسجيل الدخول واستخدامها في المرات القادمة.</span
+                >登录凭证将安全保存在本地，以便下次自动登录。</span
             >
         {:else}
             <span class="label text-center"
-                >لقد سجلت الدخول سابقا. اضغط للتسجيل بواسطة البيانات المحفوظة.<br />أو سجل الخروج
-                للتسجيل ببيانات مختلفة.</span
+                >检测到本地保存的登录凭证。您可以点击直接登录，<br />或选择退出以使用其他账号。</span
             >
         {/if}
         <div class="form-control my-6">
             <div class="flex flex-wrap gap-4 justify-center">
-                <button onclick={logIn} class="btn btn-primary">تسجيل الدخول</button>
+                <button onclick={logIn} class="btn btn-primary">登录系统</button>
                 {#if $isLoggedOut}
-                    <button onclick={logOutAndShowToast} class="btn btn-warning">تسجيل الخروج</button>
+                    <button onclick={logOutAndShowToast} class="btn btn-warning">退出当前账号</button>
                 {/if}
             </div>
         </div>
     </div>
 {:else}
     <aside class="label block text-center">
-        يعاد توجهيك الآن... <a class="text-primary" href="/app">اضغط هنا إذا لم تحول تلقائيا.</a>
+        正在跳转至系统控制台... <a class="text-primary" href="/app">如果未自动跳转，请点击此处。</a>
     </aside>
 {/if}
 <Redirect url="/app/" condition={isLoggedIn} timeout="2100" />

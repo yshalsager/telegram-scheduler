@@ -74,8 +74,8 @@ class Telegram {
         await this.client.start({
             phoneNumber,
             phoneCode: async () =>
-                prompt('أدخل رمز التحقق الذي وصلك على تطبيق تيليجرام أو في رسالة الآن'),
-            password: async () => prompt('أدخل كلمة السر الخاصة بالمصادقة الثنائية'),
+                prompt('请输入您在 Telegram 应用或短信中收到的验证码：'),
+            password: async () => prompt('请输入您的两步验证密码（2FA）：'),
             onError: err => {
                 return console.log(err.toString())
             },

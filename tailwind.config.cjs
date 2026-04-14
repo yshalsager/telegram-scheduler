@@ -6,8 +6,8 @@ module.exports = {
 	theme: {
 		extend: {
 			fontFamily: {
-				sans: ['"Noto Sans Arabic"', ...require('tailwindcss/defaultTheme.js').fontFamily.sans],
-				serif: ['Inter', ...require('tailwindcss/defaultTheme.js').fontFamily.serif]
+				sans: ['Inter', '"PingFang SC"', '"Microsoft YaHei"', '"Noto Sans SC"', ...require('tailwindcss/defaultTheme.js').fontFamily.sans],
+				serif: ['"Noto Serif SC"', '"Songti SC"', ...require('tailwindcss/defaultTheme.js').fontFamily.serif]
 			}
 		}
 	},

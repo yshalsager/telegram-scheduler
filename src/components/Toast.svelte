@@ -18,7 +18,7 @@ onMount(async () => {
 })
 </script>
 
-<div id="toastNotification" class="toast toast-start top-20">
+<div id="toastNotification" class="toast toast-top toast-center mt-10 z-50">
     <div class="alert alert-info">
         <div>
             <Info size={24} weight="bold" color="currentColor" />
