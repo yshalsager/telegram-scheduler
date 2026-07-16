@@ -1,0 +1,13 @@
+allowBuilds:
+    bufferutil: true
+    es5-ext: false
+    esbuild: true
+    utf-8-validate: false
+
+onlyBuiltDependencies:
+    - bufferutil
+    - esbuild
+
+ignoredBuiltDependencies:
+    - es5-ext
+    - utf-8-validate
