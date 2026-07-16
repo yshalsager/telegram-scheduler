@@ -33,11 +33,5 @@
 		"telegram": "browser",
 		"vite": "^8.0.0"
 	},
-	"type": "module",
-	"pnpm": {
-    "onlyBuiltDependencies": [
-      "bufferutil",
-      "esbuild"
-    ]
-  }
+	"type": "module"
 }
