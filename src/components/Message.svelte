@@ -1,7 +1,6 @@
 <script>
 import {format} from 'date-fns'
 
-let authorChannel
 let {author, messageDateTime, children} = $props()
 </script>
 
@@ -34,11 +33,7 @@ let {author, messageDateTime, children} = $props()
             class="text-primary mt-1 overflow-hidden text-sm leading-4 overflow-ellipsis
                 whitespace-nowrap dark:text-blue-400"
         >
-            {#if authorChannel}
-                <a href={authorChannel}><span dir="auto">{author}</span></a>
-            {:else}
-                <span dir="auto">{author}</span>
-            {/if}
+            <span dir="auto">{author}</span>
         </div>
     {/if}
 

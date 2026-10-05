@@ -6,10 +6,11 @@
         "dev": "vite dev",
         "build": "vite build",
         "preview": "vite preview",
-        "lint": "prettier --plugin-search-dir . --check . && eslint .",
-        "format": "prettier --plugin-search-dir . --write ."
+        "lint": "prettier --check . && eslint .",
+        "format": "prettier --write ."
     },
     "devDependencies": {
+        "@eslint/js": "^10.0.1",
         "@sveltejs/adapter-auto": "^8.0.0",
         "@sveltejs/adapter-static": "^4.0.0",
         "@sveltejs/kit": "^3.0.0",

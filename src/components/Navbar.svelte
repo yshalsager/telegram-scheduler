@@ -54,7 +54,6 @@ const logOutAndShowToast = () => {
 				<Gear size={24} weight="bold" />
 			</a>
 		</li> -->
-        <!-- svelte-ignore a11y_click_events_have_key_events a11y_no_noninteractive_element_interactions -->
         <li>
             <label class="swap swap-rotate">
                 <!-- this hidden checkbox controls the state -->

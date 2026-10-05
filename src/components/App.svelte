@@ -42,7 +42,7 @@ const rawTextMessages = $derived.by(() => {
         .map(msg => ({
             ...msg,
             prefix: messagePrefix,
-            suffix: messageSuffix
+            suffix: messageSuffix,
         }))
 })
 
@@ -196,8 +196,7 @@ function removeSeparator(index) {
                             type="text"
                             placeholder=""
                             bind:value={messagePrefix}
-                            class="border-2 textarea textarea-bordered textarea-primary"
-                        ></textarea>
+                            class="textarea textarea-bordered textarea-primary border-2"></textarea>
                     </div>
                     <div class="form-control">
                         <label class="label mb-2" for="messageSuffix">
@@ -208,8 +207,7 @@ function removeSeparator(index) {
                             type="text"
                             placeholder=""
                             bind:value={messageSuffix}
-                            class="border-2 textarea textarea-bordered textarea-primary"
-                        ></textarea>
+                            class="textarea textarea-bordered textarea-primary border-2"></textarea>
                     </div>
                 </div>
                 <div class="flex w-full flex-wrap items-end gap-2 sm:flex-nowrap">
