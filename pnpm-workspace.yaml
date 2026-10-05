@@ -3,10 +3,12 @@ allowBuilds:
     es5-ext: false
     esbuild: true
     utf-8-validate: false
+    workerd: true
 
 onlyBuiltDependencies:
     - bufferutil
     - esbuild
+    - workerd
 
 ignoredBuiltDependencies:
     - es5-ext

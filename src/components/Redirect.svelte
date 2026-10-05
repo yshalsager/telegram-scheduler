@@ -1,6 +1,6 @@
 <script>
 import {navigateAndReplaceState} from '../lib/navigation.js'
-import {page} from '$app/stores'
+import {page} from '$app/state'
 
 /**
  * @typedef {Object} Props
@@ -13,10 +13,10 @@ import {page} from '$app/stores'
 let {url, condition, timeout = 0} = $props()
 $effect(() => {
     $condition &&
-        $page.url.pathname !== url &&
-        setTimeout(() => {
+        page.url.pathname !== url &&
+        setTimeout(async () => {
             try {
-                navigateAndReplaceState(url)
+                await navigateAndReplaceState(url)
             } catch (err) {
                 console.error(err)
             }

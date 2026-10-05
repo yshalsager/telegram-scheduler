@@ -4,10 +4,11 @@ import {logOut} from '../lib/logout.js'
 import {showToast} from '../lib/toast.js'
 import {toggleTheme} from '../lib/theme.js'
 import {theme, isAuthenticated, telegramUser} from '../store.js'
-import {page} from '$app/stores'
+import {page} from '$app/state'
 
 // import Gear from 'phosphor-svelte/lib/Gear';
 import Moon from 'phosphor-svelte/lib/Moon'
+
 import SignIn from 'phosphor-svelte/lib/SignIn'
 import SignOut from 'phosphor-svelte/lib/SignOut'
 import Sun from 'phosphor-svelte/lib/Sun'
@@ -39,10 +40,9 @@ const logOutAndShowToast = () => {
                     title="تسجيل الدخول"
                     href="/login"
                     onclick={() =>
-                        $page.url.pathname !== '/login' && navigateAndReplaceState('/login')}
+                        page.url.pathname !== '/login' && navigateAndReplaceState('/login')}
+                    ><SignIn size={24} weight="bold" /></a
                 >
-                    <SignIn size={24} weight="bold" />
-                </a>
             {/if}
         </li>
         <!-- <li>
@@ -62,7 +62,7 @@ const logOutAndShowToast = () => {
                     type="checkbox"
                     class="theme-controller"
                     value={$theme}
-                    onchange={(e) => toggleTheme(e.target.value)}
+                    onchange={e => toggleTheme(e.target.value)}
                 />
                 <div class="swap-off">
                     <Sun size={24} weight="bold" />

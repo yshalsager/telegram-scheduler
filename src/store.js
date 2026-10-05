@@ -1,5 +1,5 @@
 import {writable, derived} from 'svelte/store'
-import {browser} from '$app/environment'
+import {browser} from '$app/env'
 import {isEmpty} from './lib/utils.js'
 
 // Toast
@@ -13,28 +13,34 @@ export const theme = writable(
             : 'telegram') ||
             'telegram'),
 )
+
 browser && theme.subscribe(value => localStorage.setItem('theme', value))
 
 // Telegram String Session
 export const telegramStringSession = writable((browser && localStorage.getItem('tss')) || '')
+
 browser && telegramStringSession.subscribe(value => localStorage.setItem('tss', value))
 
 // Telegram API ID
 export const telegramApiID = writable((browser && localStorage.getItem('tai')) || '')
+
 browser && telegramApiID.subscribe(value => localStorage.setItem('tai', value))
 
 // Telegram API Hash
 export const telegramApiHash = writable((browser && localStorage.getItem('tah')) || '')
+
 browser && telegramApiHash.subscribe(value => localStorage.setItem('tah', value))
 
 // Login state
 export const isAuthenticated = writable(
     (browser && sessionStorage.getItem('tia') === 'true') || false,
 )
+
 browser && isAuthenticated.subscribe(value => sessionStorage.setItem('tia', value))
 
 // LoggedIn User
 export const telegramUser = writable((browser && JSON.parse(localStorage.getItem('tlu'))) || {})
+
 browser && telegramUser.subscribe(value => localStorage.setItem('tlu', JSON.stringify(value)))
 
 // derived values
